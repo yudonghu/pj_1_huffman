@@ -125,24 +125,15 @@ public class huffman_compress_with_single_thread implements Callable {
             total_time_used += (writingResult.endTime-bytesStringResult.startingTime );
 
 
-
         }
         System.out.println("Running for "+runningTimes+" times, The average performance:");
         System.out.println("Creating tree used(in nano-sec):"+(creating_tree_used)/runningTimes);
         System.out.println("Writing File used(in nano-sec):"+(writing_File_used)/runningTimes);
-        System.out.println("Total time used(in nano-sec):"+(total_time_used)/runningTimes);
+        System.out.println("Total time used(in milli-sec):"+(total_time_used)/runningTimes/1_000_000);
 
 
 
         return null;
-
-
-
-
-
-
-
-
 
 
     }
