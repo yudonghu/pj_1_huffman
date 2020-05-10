@@ -29,8 +29,6 @@ public class BytesStringToBytesQueueConvert implements Callable {
                 if(tempStr.charAt(i+j) == '1'){
                     //System.out.println("got one");
                     tempSum = (int)(tempSum + Math.pow(2,7-j));
-//                    System.out.println("j="+ j + "single amount= "+Math.pow(2,7-j));
-//                    System.out.println("inside = "+tempSum);
                 }
 //                System.out.println((byte)tempSum);
             }

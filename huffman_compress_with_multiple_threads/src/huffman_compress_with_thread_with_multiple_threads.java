@@ -72,7 +72,6 @@ public class huffman_compress_with_thread_with_multiple_threads implements Calla
             }
             CodeMapCreator.resultAndTimeUsed codeMapResult = ( CodeMapCreator.resultAndTimeUsed) codeMapTask.get();
             HashMap<Character,String > codeMap = codeMapResult.codeMap;
-//        codeMap.forEach((key, value) -> System.out.println(key + ":" + value));
 
             //=====================encode char string in to binaryStr string
             AtomicInteger workingIndex = new AtomicInteger(0);
@@ -94,33 +93,16 @@ public class huffman_compress_with_thread_with_multiple_threads implements Calla
             new Thread( bytesQueueTask).start();
 
 
-//
-//            while (!bytesQueueTask.isDone()){
-//         //       System.out.println("Still working");
-//
-//            }
 
 
             HuffmanFileWriter fileWriter = new HuffmanFileWriter(bytesQueue,new File("C:\\Users\\HydenLuc\\Desktop\\threadTest.txt"));
             FutureTask writeFileTask = new FutureTask(fileWriter);
             new Thread(writeFileTask).start();
             while(!(writeFileTask.isDone())){
-                // System.out.println("Still working");
             }
 
             BytesStringToBytesQueueConvert.resultAndTimeUsed byteQueueResult = ( BytesStringToBytesQueueConvert.resultAndTimeUsed) bytesQueueTask.get();
             HuffmanFileWriter.resultAndTimeUsed writingResult= (HuffmanFileWriter.resultAndTimeUsed) writeFileTask.get();
-
-
-            //     System.out.println("Creating tree used(in milli-sec):");
-            //     System.out.println("Creating tree used(in milli-sec):"+(nodeQueueResult.endTime));
-
-//
-//            System.out.println("Creating tree used(in milli-sec):"+(rootNodeResult.endTime-nodeQueueResult.startingTime)/1_000_000);
-//
-//            System.out.println("Writing File used(in milli-sec):"+(writingResult.endTime-byteQueueResult.startingTime)/1_000_000);
-//            System.out.println("Total time used(in milli-sec):"+(writingResult.endTime-bytesStringResult.startingTime )/1_000_000);
-
 
 
             creating_tree_used += (rootNodeResult.endTime-nodeQueueResult.startingTime);
@@ -133,7 +115,7 @@ public class huffman_compress_with_thread_with_multiple_threads implements Calla
             System.out.println("Running for "+runningTimes+" times, The average performance:");
             System.out.println("Creating tree used(in nano-sec):"+(creating_tree_used)/runningTimes);
             System.out.println("Writing File used(in nano-sec):"+(writing_File_used)/runningTimes);
-            System.out.println("Total time used(in nano-sec):"+(total_time_used)/runningTimes);
+            System.out.println("Total time used(in milli-sec):"+(total_time_used)/runningTimes/1_000_000);
 
         return null;
 
